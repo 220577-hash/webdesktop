@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Desktop - WinBox.js</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/winbox/dist/css/winbox.min.css">
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: url('https://picsum.photos/1600/900?blur=3') no-repeat center/cover;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .icon {
+      position: absolute;
+      top: 80px;
+      left: 80px;
+      text-align: center;
+      cursor: pointer;
+      color: white;
+    }
+    .icon img {
+      width: 64px;
+      height: 64px;
+    }
+
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- デスクトップアイコン -->
+  <div class="icon" onclick="openNote()">
+    <img src="https://cdn-icons-png.flaticon.com/512/167/167749.png">
+    <p>メモ帳</p>
+  </div>
+
+  <div class="icon" style="left:180px;" onclick="openBrowser()">
+    <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png">
+    <p>ブラウザ</p>
+  </div>
+
+  <div class="taskbar">Web Desktop (WinBox.js版)</div>
+
+  <!-- WinBox.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/winbox/dist/js/winbox.bundle.js"></script>
+
+  <script>
+    function openNote() {
+      new WinBox({
+        title: "メモ帳",
+        x: "center",
+        y: "center",
+        width: "400px",
+        height: "300px",
+        background: "#0078D7",
+        html: `
+          <textarea style="width:100%; height:100%; border:none; outline:none; padding:10px;">
+ここにメモを書けます。
+          </textarea>
+        `
+      });
+    }
+
+    function openBrowser() {
+      new WinBox({
+        title: "ブラウザ",
+        width: "70%",
+        height: "70%",
+        background: "#222",
+        url: "https://example.com", // 任意のサイトを表示
+      });
+    }
+  </script>
+
+</body>
+</html>
